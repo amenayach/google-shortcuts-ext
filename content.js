@@ -35,8 +35,6 @@ window.addEventListener("keydown", function(ev) {
   if (ev.keyCode === 27) {
     setTimeout(function() {
       document.body.click();
-      //   var autoCompleteList = document.querySelector('[jscontroller="tg8oTe"]');
-      //   autoCompleteList.style.display = "block";
       var firstResult = document.querySelector(resultSelector);
       var firstResulth3div = firstResult.querySelector("h3");
       focusOnResult(firstResult, firstResulth3div);
@@ -51,8 +49,6 @@ window.addEventListener("keydown", function(ev) {
   ) {
     ev.preventDefault();
     document.body.click();
-    // var autoCompleteList = document.querySelector('[jscontroller="tg8oTe"]');
-    // autoCompleteList.style.display = "none";
     var results = document.querySelectorAll(resultSelector);
     var goUp = ev.keyCode === 38;
     if (results.length > 0) {
