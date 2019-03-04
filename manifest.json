@@ -1,0 +1,12 @@
+{
+    "manifest_version": 2,
+ 
+    "name": "Google Shortcuts",
+    "version": "0.1.0",
+    "description": "Google Shortcuts",
+   
+    "content_scripts": [{
+      "js": ["content.js"],
+      "matches": ["https://www.google.com/*"]
+    }]
+}
