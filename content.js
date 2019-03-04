@@ -30,8 +30,25 @@ function focusOnResult(resultDom, h3div) {
   resultDom.style.outline = "none";
 }
 
+function getQueryResults() {
+  var mainResultSections = document.querySelectorAll(".bkWMgd");
+  var results = [];
+  if (mainResultSections.length > 0) {
+    for (var i = 0; i < mainResultSections.length; i++) {
+      if (mainResultSections[i].firstChild.tagName.toLowerCase() === "h2") {
+        var subresult = mainResultSections[i].querySelectorAll(resultSelector);
+        if (subresult.length > 0) {
+          for (var j = 0; j < subresult.length; j++) {
+            results.push(subresult[j]);
+          }
+        }
+      }
+    }
+  }
+  return results;
+}
+
 window.addEventListener("keydown", function(ev) {
-  console.log(ev.keyCode);
   if (ev.keyCode === 27) {
     setTimeout(function() {
       document.body.click();
@@ -50,7 +67,7 @@ window.addEventListener("keydown", function(ev) {
   ) {
     ev.preventDefault();
     document.body.click();
-    var results = document.querySelectorAll(resultSelector);
+    var results = getQueryResults();
     var goUp = ev.keyCode === 38;
     if (results.length > 0) {
       updateLastIndex(results, goUp);
