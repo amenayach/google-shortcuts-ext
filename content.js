@@ -38,6 +38,7 @@ window.addEventListener("keydown", function(ev) {
       var firstResult = document.querySelector(resultSelector);
       var firstResulth3div = firstResult.querySelector("h3");
       focusOnResult(firstResult, firstResulth3div);
+      lastIndex = 0;
     }, 200);
   } else if (ev.keyCode === 191 && qInput !== document.activeElement) {
     setTimeout(function() {
