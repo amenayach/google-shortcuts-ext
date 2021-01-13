@@ -1,4 +1,3 @@
-var resultSelector = ".g .rc .r > a[ping]";
 var qInput = document.querySelector('[name="q"]');
 var lastIndex = -1;
 
@@ -22,43 +21,21 @@ function updateLastIndex(queryResult, goUp) {
 }
 
 function focusOnResult(resultDom, h3div) {
-  h3div.style.borderLeft = "3px solid #795548";
-  h3div.style.borderRight = "3px solid #795548";
-  h3div.style.borderRadius = "8px";
-  h3div.style.padding = "3px";
-  resultDom.focus();
-  resultDom.style.outline = "none";
+  resultDom.parentElement.focus();
 }
 
-function getQueryResults() {
-  var mainResultSections = document.querySelectorAll(".bkWMgd");
-  var results = [];
-  if (mainResultSections.length > 0) {
-    for (var i = 0; i < mainResultSections.length; i++) {
-      if (mainResultSections[i].firstChild.tagName.toLowerCase() === "h2") {
-        var subresult = mainResultSections[i].querySelectorAll(resultSelector);
-        if (subresult.length > 0) {
-          for (var j = 0; j < subresult.length; j++) {
-            results.push(subresult[j]);
-          }
-        }
-      }
-    }
-  }
-  return results;
-}
 
-window.addEventListener("keydown", function(ev) {
+window.addEventListener("keydown", function (ev) {
   if (ev.keyCode === 27) {
-    setTimeout(function() {
+    setTimeout(function () {
       document.body.click();
-      var firstResult = document.querySelector(resultSelector);
-      var firstResulth3div = firstResult.querySelector("h3");
+      var firstResult = document.querySelector('.g a h3');
+      var firstResulth3div = firstResult;
       focusOnResult(firstResult, firstResulth3div);
       lastIndex = 0;
     }, 200);
   } else if (ev.keyCode === 191 && qInput !== document.activeElement) {
-    setTimeout(function() {
+    setTimeout(function () {
       qInput.focus();
     }, 200);
   } else if (
@@ -67,22 +44,22 @@ window.addEventListener("keydown", function(ev) {
   ) {
     ev.preventDefault();
     document.body.click();
-    var results = getQueryResults();
+    var results = getLinks();
     var goUp = ev.keyCode === 38;
     if (results.length > 0) {
       updateLastIndex(results, goUp);
 
       for (var i = 0; i < results.length; i++) {
-        var h3div = results[i].querySelector("h3");
+        var h3div = results[i];
         if (lastIndex === i) {
           focusOnResult(results[i], h3div);
-        } else {
-          h3div.style.borderLeft = "none";
-          h3div.style.borderRight = "none";
-          h3div.style.borderRadius = "none";
-          results[i].style.padding = "0px";
         }
       }
     }
   }
 });
+
+function getLinks() {
+  return [...document.querySelectorAll('.g')]
+          .map(x => x.querySelector('a h3'));
+}

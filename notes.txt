@@ -1,0 +1,11 @@
+var links = document.querySelectorAll("h3.DKV0Md");
+
+//people also ask
+document.querySelectorAll(".g.kno-kp.mnr-c.g-blk");
+
+// focus on link
+h3div = links[3];
+h3div.style.borderLeft = "3px solid #795548";
+h3div.style.borderRight = "3px solid #795548";
+h3div.style.borderRadius = "8px";
+h3div.style.padding = "3px";
